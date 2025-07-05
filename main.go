@@ -1,6 +1,7 @@
 package main
 
 import (
+	"aba.technical.test/controller"
 	"github.com/gofiber/fiber/v2"
 
 	jwtware "github.com/gofiber/contrib/jwt"
@@ -10,15 +11,19 @@ func main() {
 	app := fiber.New()
 
 	// Authorization
-	app.Use(jwtware.New(jwtware.Config{
-		SigningKey: jwtware.SigningKey{Key: []byte("secret")},
-	}))
 	app.Post("/login")
 
 	// Auth Test
+	app.Use(jwtware.New(jwtware.Config{
+		SigningKey: jwtware.SigningKey{Key: []byte("secret")},
+	}))
+
+	app.Get("/restricted", controller.Restricted)
+
+	// Playground
 	app.Get("/admin-auth")
 	app.Get("/technician-auth")
-	app.Get("/viewer-aut")
+	app.Get("/viewer-auth")
 
 	// Devices Endpoints
 	app.Get("/devices")
