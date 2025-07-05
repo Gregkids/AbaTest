@@ -15,7 +15,7 @@ func main() {
 
 	// Auth Test
 	app.Use(jwtware.New(jwtware.Config{
-		SigningKey: jwtware.SigningKey{Key: []byte("secret")},
+		SigningKey: jwtware.SigningKey{Key: []byte("aba_secret")},
 	}))
 
 	app.Get("/restricted", controller.Restricted)

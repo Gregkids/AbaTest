@@ -4,31 +4,24 @@ import (
 	"log"
 	"time"
 
-	"github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
 
-type Token struct {
-	UserId string `json:"uid"`
-	Role   string `json:"role"`
-	jwt.StandardClaims
-}
-
 func GenerateToken(id string, userRole string) (string, error) {
 	// Create the Claims
-	claims := Token{
-		id,
-		userRole,
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 72).Unix(),
-			IssuedAt:  time.Now().Unix(),
-		},
+	claims := jwt.MapClaims{
+		"user": "John Doe",
+		"role": "admin",
+		"exp":  time.Now().Add(time.Hour * 3).Unix(),
+		"iat":  time.Now().Unix(),
 	}
+
 	// Create token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
 	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
+	t, err := token.SignedString([]byte("aba_secret"))
 	if err != nil {
 		return "", err
 	}
