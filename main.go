@@ -18,19 +18,17 @@ func main() {
 		SigningKey: jwtware.SigningKey{Key: []byte("aba_secret")},
 	}))
 
-	app.Get("/restricted", controller.Restricted)
+	// Playground
+	app.Get("/admin-auth")
+	app.Get("/technician-auth")
+	app.Get("/viewer-auth")
 
-	// // Playground
-	// app.Get("/admin-auth")
-	// app.Get("/technician-auth")
-	// app.Get("/viewer-auth")
-
-	// // Devices Endpoints
-	// app.Get("/devices")
-	// app.Get("/devices/:id")
-	// app.Post("/devices")
-	// app.Put("/devices/:id")
-	// app.Delete("devices/:id")
+	// Devices Endpoints
+	app.Get("/devices", controller.DeviceGetAll)
+	app.Get("/devices/:id", controller.DeviceGetOne)
+	app.Post("/devices")
+	app.Put("/devices/:id")
+	app.Delete("devices/:id")
 
 	app.Listen(":3000")
 }
