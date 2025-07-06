@@ -12,9 +12,8 @@ func DeviceGetAll(c *fiber.Ctx) error {
 	db, err := sql.Open("postgres", "host=localhost user=postgres password=darageta dbname=local_test sslmode=disable")
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"code":  fiber.StatusInternalServerError,
-			"error": fiber.ErrInternalServerError,
-			"msg":   err.Error(),
+			"status": fiber.ErrInternalServerError,
+			"desc":   err.Error(),
 		})
 	}
 
@@ -25,14 +24,13 @@ func DeviceGetAll(c *fiber.Ctx) error {
 	ret, err := r.GetAllDevice()
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{
-			"code":  fiber.StatusNotFound,
-			"error": fiber.ErrNotFound,
-			"msg":   err.Error(),
+			"status": fiber.ErrNotFound,
+			"desc":   err.Error(),
 		})
 	}
 
 	return c.Status(200).JSON(fiber.Map{
 		"code":    fiber.StatusOK,
-		"Devices": ret,
+		"devices": ret,
 	})
 }

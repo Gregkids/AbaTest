@@ -13,9 +13,8 @@ func DeviceAdd(c *fiber.Ctx) error {
 	db, err := sql.Open("postgres", "host=localhost user=postgres password=darageta dbname=local_test sslmode=disable")
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"code":  fiber.StatusInternalServerError,
-			"error": fiber.ErrInternalServerError,
-			"msg":   err.Error(),
+			"status": fiber.ErrInternalServerError,
+			"desc":   err.Error(),
 		})
 	}
 
@@ -27,9 +26,8 @@ func DeviceAdd(c *fiber.Ctx) error {
 	err = c.BodyParser(req)
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"code":  fiber.StatusBadRequest,
-			"error": fiber.ErrBadRequest,
-			"msg":   err.Error(),
+			"status": fiber.ErrBadRequest,
+			"desc":   err.Error(),
 		})
 	}
 
@@ -37,14 +35,13 @@ func DeviceAdd(c *fiber.Ctx) error {
 	err = r.InsertDevice(req)
 	if err != nil {
 		return c.Status(422).JSON(fiber.Map{
-			"code":  fiber.StatusUnprocessableEntity,
-			"error": fiber.ErrUnprocessableEntity,
-			"msg":   err.Error(),
+			"status": fiber.ErrUnprocessableEntity,
+			"desc":   err.Error(),
 		})
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"code": fiber.StatusOK,
-		"msg":  "Device Added",
+		"code":    fiber.StatusOK,
+		"message": "Device Added",
 	})
 }
