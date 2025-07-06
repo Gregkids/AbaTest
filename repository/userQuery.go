@@ -44,3 +44,29 @@ func (q *UserSQL) Login(req *models.UserCred) (string, error) {
 
 	return token, nil
 }
+
+func (q *UserSQL) GetUser(reqID string) ([]models.UserProfile, error) {
+	ret := []models.UserProfile{}
+
+	// Query Get User Profile
+	query := `
+	SELECT
+		u.user_id,
+		u.name,
+		u.email,
+		u.role
+	FROM public.users u WHERE user_id=$1;
+	`
+	data := models.UserProfile{}
+	err := q.DB.QueryRow(query, reqID).Scan(&data.UserID, &data.Username, &data.Email, &data.Role)
+
+	if err == sql.ErrNoRows {
+		return nil, errors.New("data not found")
+	} else if err != nil {
+		return nil, err
+	}
+
+	ret = append(ret, data)
+
+	return ret, nil
+}
