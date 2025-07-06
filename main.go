@@ -11,7 +11,7 @@ func main() {
 	app := fiber.New()
 
 	// Authorization
-	app.Post("/login")
+	app.Post("/login", controller.AuthLogin)
 
 	// Auth Test
 	app.Use(jwtware.New(jwtware.Config{
@@ -20,17 +20,17 @@ func main() {
 
 	app.Get("/restricted", controller.Restricted)
 
-	// Playground
-	app.Get("/admin-auth")
-	app.Get("/technician-auth")
-	app.Get("/viewer-auth")
+	// // Playground
+	// app.Get("/admin-auth")
+	// app.Get("/technician-auth")
+	// app.Get("/viewer-auth")
 
-	// Devices Endpoints
-	app.Get("/devices")
-	app.Get("/devices/:id")
-	app.Post("/devices")
-	app.Put("/devices/:id")
-	app.Delete("devices/:id")
+	// // Devices Endpoints
+	// app.Get("/devices")
+	// app.Get("/devices/:id")
+	// app.Post("/devices")
+	// app.Put("/devices/:id")
+	// app.Delete("devices/:id")
 
 	app.Listen(":3000")
 }

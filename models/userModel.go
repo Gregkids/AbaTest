@@ -1,6 +1,6 @@
 package models
 
-type UserAuth struct {
+type UserCred struct {
 	Email string `json:"email"`
 	Pass  string `json:"password"`
 }

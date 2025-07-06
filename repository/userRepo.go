@@ -13,18 +13,18 @@ type UserSQL struct {
 	DB *sql.DB
 }
 
-func (q *UserSQL) Login(req *models.UserAuth) (string, error) {
+func (q *UserSQL) Login(req *models.UserCred) (string, error) {
 	var uid, pw, role string
 
 	// Login Query
-	Q := `
+	query := `
 		SELECT
 			u.user_id,
 			u.password,
-			u.id_role
-		FROM users u WHERE email=?;
+			u.role
+		FROM public.users u WHERE email=$1;
 	`
-	err := q.DB.QueryRow(Q, req.Email).Scan(&uid, &pw, &role)
+	err := q.DB.QueryRow(query, req.Email).Scan(&uid, &pw, &role)
 
 	switch {
 	case err == sql.ErrNoRows:

@@ -10,11 +10,12 @@ import (
 
 func AuthLogin(c *fiber.Ctx) error {
 	// Connecting to Database
-	db, err := sql.Open("postgres", "host=localhost user=postgres password=darageta dbname=postgres sslmode=disable")
+	db, err := sql.Open("postgres", "host=localhost user=postgres password=darageta dbname=local_test sslmode=disable")
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
-			"code": fiber.StatusInternalServerError,
-			"msg":  fiber.ErrInternalServerError,
+			"code":  fiber.StatusInternalServerError,
+			"error": err.Error(),
+			"msg":   fiber.ErrInternalServerError,
 		})
 	}
 
@@ -22,12 +23,13 @@ func AuthLogin(c *fiber.Ctx) error {
 	r := repository.UserSQL{DB: db}
 
 	// Declare Requests
-	cred := new(models.UserAuth)
+	cred := new(models.UserCred)
 	err = c.BodyParser(cred)
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
-			"code": fiber.StatusBadRequest,
-			"msg":  fiber.ErrBadRequest,
+			"code":  fiber.StatusBadRequest,
+			"error": err.Error(),
+			"msg":   fiber.ErrBadRequest,
 		})
 	}
 
@@ -35,8 +37,9 @@ func AuthLogin(c *fiber.Ctx) error {
 	token, err := r.Login(cred)
 	if err != nil {
 		return c.Status(422).JSON(fiber.Map{
-			"code": fiber.StatusUnprocessableEntity,
-			"msg":  fiber.ErrUnprocessableEntity,
+			"code":  fiber.StatusUnprocessableEntity,
+			"error": err.Error(),
+			"msg":   fiber.ErrUnprocessableEntity,
 		})
 	}
 

@@ -11,10 +11,10 @@ import (
 func GenerateToken(id string, userRole string) (string, error) {
 	// Create the Claims
 	claims := jwt.MapClaims{
-		"user": "John Doe",
-		"role": "admin",
-		"exp":  time.Now().Add(time.Hour * 3).Unix(),
-		"iat":  time.Now().Unix(),
+		"userID": id,
+		"role":   userRole,
+		"exp":    time.Now().Add(time.Hour * 3).Unix(),
+		"iat":    time.Now().Unix(),
 	}
 
 	// Create token
@@ -29,11 +29,16 @@ func GenerateToken(id string, userRole string) (string, error) {
 	return t, nil
 }
 
-func MatchPassword(hashed, plaintext string) bool {
+func MatchPassword(password, plaintext string) bool {
+	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
+	if err != nil {
+		return false
+	}
+
 	byteHash := []byte(hashed)
 	bytePlain := []byte(plaintext)
 
-	err := bcrypt.CompareHashAndPassword(byteHash, bytePlain)
+	err = bcrypt.CompareHashAndPassword(byteHash, bytePlain)
 	if err != nil {
 		log.Println(err)
 		return false
