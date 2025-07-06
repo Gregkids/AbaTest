@@ -1,8 +1,10 @@
 package repository
 
 import (
+	"context"
 	"database/sql"
 	"errors"
+	"time"
 
 	"aba.technical.test/models"
 )
@@ -18,7 +20,8 @@ func (q *DeviceSQL) GetAllDevice() ([]models.DeviceData, error) {
 	query := `
 	SELECT
 		d.device_name
-	FROM public.device d `
+	FROM public.device d 
+	`
 
 	rows, err := q.DB.Query(query)
 	if err != nil {
@@ -64,4 +67,87 @@ func (q *DeviceSQL) GetOneDevice(reqID string) ([]models.DeviceData, error) {
 	ret = append(ret, data)
 
 	return ret, nil
+}
+
+func (q *DeviceSQL) InsertDevice(req *models.DeviceReq) error {
+	ctx := context.Background()
+	tx, err := q.DB.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	// Query Insert Name
+	query := `
+	INSERT INTO public.device
+		(device_id, device_name, location, status, updated_at)
+	VALUES
+		($1, $2, $3, $4, $5); 
+	`
+
+	_, err = tx.ExecContext(ctx, query, req.DeviceId, req.DeviceName, req.DeviceLocation, req.DeviceStatus, time.Now())
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func (q *DeviceSQL) UpdateDevice(reqID string, req *models.DeviceReq) error {
+	ctx := context.Background()
+	tx, err := q.DB.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	// Query Insert Name
+	query := `
+	UPDATE public.device SET
+		device_name=$2, location=$3, status=$4, updated_at=$5
+	WHERE device_id=$1; 
+	`
+	_, err = tx.ExecContext(ctx, query, req.DeviceId, req.DeviceName, req.DeviceLocation, req.DeviceStatus, time.Now())
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
+func (q *DeviceSQL) DeleteDevice(reqID string) error {
+	ctx := context.Background()
+	tx, err := q.DB.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+
+	// Query Insert Name
+	query := `
+	DELETE FROM public.device 
+		WHERE device_id=$1; 
+	`
+	_, err = tx.ExecContext(ctx, query, reqID)
+
+	if err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
 }

@@ -14,8 +14,8 @@ func AuthLogin(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"code":  fiber.StatusInternalServerError,
-			"error": err.Error(),
-			"msg":   fiber.ErrInternalServerError,
+			"error": fiber.ErrInternalServerError,
+			"msg":   err.Error(),
 		})
 	}
 
@@ -28,8 +28,8 @@ func AuthLogin(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{
 			"code":  fiber.StatusBadRequest,
-			"error": err.Error(),
-			"msg":   fiber.ErrBadRequest,
+			"error": fiber.ErrBadRequest,
+			"msg":   err.Error(),
 		})
 	}
 
@@ -38,8 +38,8 @@ func AuthLogin(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(422).JSON(fiber.Map{
 			"code":  fiber.StatusUnprocessableEntity,
-			"error": err.Error(),
-			"msg":   fiber.ErrUnprocessableEntity,
+			"error": fiber.ErrUnprocessableEntity,
+			"msg":   err.Error(),
 		})
 	}
 

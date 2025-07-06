@@ -13,7 +13,7 @@ func GenerateToken(id string, userRole string) (string, error) {
 	claims := jwt.MapClaims{
 		"userID": id,
 		"role":   userRole,
-		"exp":    time.Now().Add(time.Hour * 3).Unix(),
+		"exp":    time.Now().Add(time.Hour * 72).Unix(),
 		"iat":    time.Now().Unix(),
 	}
 

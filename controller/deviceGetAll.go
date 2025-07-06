@@ -32,7 +32,7 @@ func DeviceGetAll(c *fiber.Ctx) error {
 	}
 
 	return c.Status(200).JSON(fiber.Map{
-		"code": fiber.StatusOK,
-		"msg":  ret,
+		"code":    fiber.StatusOK,
+		"Devices": ret,
 	})
 }
