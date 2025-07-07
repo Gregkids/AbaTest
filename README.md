@@ -9,11 +9,14 @@ Package used:
 * github.com/gofiber/fiber/v2
 * github.com/golang-jwt/jwt/v5
 
-Database used: PostgreSQL
+Database used: 
+* PostgreSQL
 
 ### Executing program
 
-* Run the program
+
+* Run the golang program
 ```
 go run main.go
 ```
+* Hit the endpoint 
