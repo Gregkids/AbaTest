@@ -1,6 +1,6 @@
-![WhatsApp Image 2025-07-07 at 09 34 24_65c452d0](https://github.com/user-attachments/assets/77fcba95-fc60-47bd-b0b8-da4d1f1a0b2f)# Technical Test - Backend IoT Developer
+# Technical Test - Backend IoT Developer
 
-CRUD Design for User & Device Access Control API Using Go Programming Language with Fiber.
+CRUD Design for User & Device Access Control API Using Golang with Fiber framework.
 
 ### Dependencies
 
@@ -11,7 +11,9 @@ Package used:
 
 Database used: 
 * PostgreSQL
-* ![Screenshot 2025-07-07 093416](https://github.com/user-attachments/assets/8e0a08c0-831c-40f3-a41b-89a45f3c3840)
+* Schema of the database
+![Screenshot 2025-07-07 093416](https://github.com/user-attachments/assets/8e0a08c0-831c-40f3-a41b-89a45f3c3840)
+* 
 
 
 ### Executing program
