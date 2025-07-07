@@ -1,27 +1,19 @@
-# Project Title
+# Technical Test - Backend IoT Developer
 
-Simple overview of use/purpose.
-
-## Description
-
-An in-depth paragraph about your project and overview of use.
-
-## Getting Started
+CRUD Design for User & Device Access Control API Using Go Programming Language with Fiber.
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+Package used:
+* github.com/gofiber/contrib/jwt
+* github.com/gofiber/fiber/v2
+* github.com/golang-jwt/jwt/v5
 
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+Database used: PostgreSQL
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Run the program
 ```
-code blocks for commands
+go run main.go
 ```
