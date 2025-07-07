@@ -59,15 +59,15 @@ missing or malformed JWT
   
 Source code snippet:
 ```
-	// User Profile Endpoints
-	app.Get("/user", controller.UserGetProfile)
+// User Profile Endpoints
+app.Get("/user", controller.UserGetProfile)
 
-	// Devices Endpoints
-	app.Get("/devices", controller.DeviceGetAll)
-	app.Get("/devices/:id", controller.DeviceGetOne)
-	app.Post("/devices", controller.DeviceAdd)
-	app.Put("/devices/:id", controller.DeviceUpdate)
-	app.Delete("devices/:id", controller.DeviceDelete)
+// Devices Endpoints
+app.Get("/devices", controller.DeviceGetAll)
+app.Get("/devices/:id", controller.DeviceGetOne)
+app.Post("/devices", controller.DeviceAdd)
+app.Put("/devices/:id", controller.DeviceUpdate)
+app.Delete("devices/:id", controller.DeviceDelete)
 
 ```
 
