@@ -22,6 +22,20 @@ Database used:
 go run main.go
 ```
 * Hit the endpoint /login to get token
+example:
+input:
 ```
-go run main.go
+{
+    "email": "useradmin@gmail.com",
+    "password": "adminpass"
+}
 ```
+output:
+```
+{
+    "code": 200,
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTIxMTI1NzcsImlhdCI6MTc1MTg1MzM3Nywicm9sZSI6IkFkbWluIiwidXNlcklEIjoiQURNMDEifQ.K8C5r6U2rQE-ComYMny17nw11-3KJk_Zbs8TiZw_vh8"
+}
+```
+* Use the token as bearer token for authorization
+
