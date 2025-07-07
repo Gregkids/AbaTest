@@ -53,19 +53,3 @@ missing or malformed JWT
     * PUT /devices/:id – to update an existing device
     * DELETE /devices/:id – to delete a device
     * GET /user - to get personal information of user
-  
-Source code snippet:
-```
-// User Profile Endpoints
-app.Get("/user", controller.UserGetProfile)
-
-// Devices Endpoints
-app.Get("/devices", controller.DeviceGetAll)
-app.Get("/devices/:id", controller.DeviceGetOne)
-app.Post("/devices", controller.DeviceAdd)
-app.Put("/devices/:id", controller.DeviceUpdate)
-app.Delete("devices/:id", controller.DeviceDelete)
-
-```
-
-
