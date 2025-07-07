@@ -22,6 +22,7 @@ Database used:
 go run main.go
 ```
 * Hit the endpoint /login to get token
+
 example:
 input:
 ```
@@ -38,6 +39,7 @@ output:
 }
 ```
 * Use the token as bearer token for authorization
+
 example in postman:
 
 ![image](https://github.com/user-attachments/assets/e2b623a1-e1fe-4485-8905-ff9b0bc8f88a)
@@ -49,6 +51,7 @@ example in postman:
     * PUT /devices/:id – to update an existing device
     * DELETE /devices/:id – to delete a device
     * GET /user - to get personal information of user
+  
 Source code snippet:
 ```
     // User Profile Endpoints
