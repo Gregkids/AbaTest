@@ -17,10 +17,7 @@ Database used:
 
 ### Run and Test the system
 
-* Run the golang program
-```
-go run main.go
-```
+* Run the golang program using technicalapp.exe file
 * Hit the endpoint /login to get token
 
 example:
