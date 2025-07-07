@@ -15,8 +15,6 @@ Database used:
 
 ![Screenshot 2025-07-07 093416](https://github.com/user-attachments/assets/8e0a08c0-831c-40f3-a41b-89a45f3c3840)
 
-* 
-
 
 ### Executing program
 
