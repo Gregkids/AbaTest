@@ -59,7 +59,7 @@ missing or malformed JWT
   
 Source code snippet:
 ```
-    // User Profile Endpoints
+	// User Profile Endpoints
 	app.Get("/user", controller.UserGetProfile)
 
 	// Devices Endpoints
