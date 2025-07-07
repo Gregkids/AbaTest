@@ -41,7 +41,7 @@ example in postman:
 
 ![image](https://github.com/user-attachments/assets/e2b623a1-e1fe-4485-8905-ff9b0bc8f88a)
 
-if the token is not set, it will sends an error
+if the token is not set, it will sends an error:
 ```
 missing or malformed JWT
 ```
